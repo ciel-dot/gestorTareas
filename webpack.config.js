@@ -1,33 +1,36 @@
 const path = require('path');
 
 module.exports = {
+    mode: 'development',
     entry: './src/index.js', // Punto de entrada de tu aplicación
     output: {
         filename: 'bundle.js', // Nombre del archivo de salida
         path: path.resolve(__dirname, 'dist'), // Carpeta de salida
     },
-    module:{
+    module: {
         rules: [
             {
-                test: /\.css$/, // Rgex para identificar archivos CSS
-                use: ['style-loader', 'css-loader'], // Loaders para procesar diferentes archivos
+                test: /\.css$/, // Regex para identificar archivos CSS
+                use: ['style-loader', 'css-loader'], // Loaders para procesar archivos CSS
             },
             {
                 test: /\.js$/, // Regex para identificar archivos JS
                 exclude: /node_modules/, // Excluir la carpeta node_modules
                 use: {
-                    loader: 'bable-loader', // Loader para transpilar JS moderno a JS compatible con más navegadores
+                    loader: 'babel-loader', // Loader para transpilar JS moderno a JS compatible con más navegadores
                     options: {
-                        presets: ['@babel/preset-env'],
+                        presets: ['@babel/preset-env'], // Preset de Babel para convertir JS moderno a versionas más antiguas
                     }
                 }
             }
         ]
-    }, 
-    devtool: 'source-map', // Generar source map para facilitar la depuración
+    },
+    devtool: 'source-map', // Generar source maps para facilitar la depuración
     devServer: {
-        contentBase: path.resolve(__dirname, 'dist'), // Carpeta desde donde obtenemos los archivos que mostramos al usuario
+        static: {
+            directory: path.resolve(__dirname, 'dist'),
+        },
         compress: true, // Habilitando compresión gzip
-        port: 9000, // Puerto del servidor de desarrollo
+        port: 9000, // Puerto del servidor de desarrollo 
     }
-}
+} 
