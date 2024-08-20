@@ -1,6 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Popins', sans-serif;
+    background-color: #fdfafd;
     margin: 0;
     padding: 0;
     display: flex;
@@ -11,7 +11,7 @@ body {
 
 
 #app {
-    background-color: white;
+    background-color: rgb(129, 84, 112);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -26,14 +26,14 @@ input {
     width: 75%;
     padding: 8px;
     margin-right: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #610c47;
     border-radius: 3px;
 }
 
 button {
     padding: 5px 8 px;
-    background-color: #007bff;
-    color: white;
+    background-color: #c9d2dd;
+    color: rgb(10, 10, 10);
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -47,6 +47,7 @@ ul {
 li {
     background-color: #f4f4f4;
     padding: 10px;
+    width: 400;
     border: 1px solid #ddd;
     margin-top: 10px;
     display: flex;

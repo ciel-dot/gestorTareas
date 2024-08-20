@@ -16,39 +16,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   toggleTask: () => (/* binding */ toggleTask)
 /* harmony export */ });
 // obtener la lista de tareas del alacenamiento del navegador "localStorage"
-let tasks = JSON.parse(localStorage.getItem('tasks')) || []; 
+var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 // Función para poder llevar las tareas de la lista 
-const getTasks = ( ) => tasks;
+var getTasks = function getTasks() {
+  return tasks;
+};
 
 // Función para agregar una tarea a la lista de tareas
-const addTask = (task) => {
-    const newTask = {
-        id: Date.now(),
-        text: task,
-        completed: false,
-    };
-    tasks.push(newTask);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+var addTask = function addTask(task) {
+  var newTask = {
+    id: Date.now(),
+    text: task,
+    completed: false
+  };
+  task.push(newTask);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
 // Función para eliminar una tarea de la lista
-const deleteTask = (id) => {
-    tasks = tasks.filter((task) => task.id !== parseInt(id));
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+var deleteTask = function deleteTask(id) {
+  tasks = tasks.filter(function (task) {
+    return task.id !== parseInt(id);
+  });
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
 // Función para actualizar una tarea de la lista
 
-const toggleTask = (id) => {
-    tasks = tasks.map((task) => {
-        if(task.id === parseInt(id)) {
-            task.completed = !task.completed;
-        }
-        return task;
-
-    });
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+var toggleTask = function toggleTask(id) {
+  tasks = tasks.map(function (task) {
+    if (task.id === parseInt(id)) {
+      task.completed = !task.completed;
+    }
+    return task;
+  });
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
 /***/ }),
@@ -67,28 +70,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Función para mostrarle al usuario las tareas
-const renderTasks = () => {
-    const taskList = document.getElementById("task-list");
-    taskList.innerHTML = '';
-    const tasks = (0,_task__WEBPACK_IMPORTED_MODULE_0__.getTasks)();
+var renderTasks = function renderTasks() {
+  var taskList = document.getElementById("task-list");
+  taskList.innerHTML = '';
+  var tasks = (0,_task__WEBPACK_IMPORTED_MODULE_0__.getTasks)();
+  tasks.forEach(function (tasks) {
+    var li = document.createElement("li");
+    li.setAttribute("data-id", tasks.id);
 
-    tasks.forEach((tasks) => {
-        const li = document.createElement("li");
-        li.setAttribute("data-id", tasks.id);
-
-        // Añadir clase solo si la tarea está completada
-        if(tasks.completed === true) {
-            li.classList.add("completed");
-        }
-
-        li.innerHTML = `
-        ${tasks.text}
-        <button class="delete"> Eliminar </button>
-        <button class="toggle"> ${ tasks.completed === false ? "Completar" : "Deshacer" } </button>
-        `;
-
-        taskList.appendChild(li);
-    });
+    // Añadir clase solo si la tarea está completada
+    if (tasks.completed === true) {
+      li.classList.add("completed");
+    }
+    li.innerHTML = "\n        ".concat(tasks.text, "\n        <div class=\"buttons\">\n        <button class=\"delete\"> Eliminar </button>\n        <button class=\"toggle\"> ").concat(tasks.completed === false ? "Completar" : "Deshacer", " </button>\n        <div>\n        ");
+    taskList.appendChild(li);
+  });
 };
 
 /***/ })
@@ -158,36 +154,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./task */ "./src/task.js");
 
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    (0,_ui__WEBPACK_IMPORTED_MODULE_0__.renderTasks)();
-
-    document.getElementById("task-form").addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const taskInput = document.getElementById("task-input").value;
-
-        if(taskInput !== "") {
-            (0,_task__WEBPACK_IMPORTED_MODULE_1__.addTask)(taskInput);
-            (0,_ui__WEBPACK_IMPORTED_MODULE_0__.renderTasks)();
-            // Limpiar el valor el input
-            document.getElementById("task-input").value = "";
-        }
-    });
-
-    document.getElementById("task-list").addEventListener("click", (e) => {
-        if(e.target.classList.contains("delete")) {
-            const taskId = e.target.parentElement.getAttribute("data-id");
-            (0,_task__WEBPACK_IMPORTED_MODULE_1__.deleteTask)(taskId);
-            (0,_ui__WEBPACK_IMPORTED_MODULE_0__.renderTasks)();
-        }
-
-        if(e.target.classList.contains("toggle")) {
-            const taskId = e.target.parentElement.getAttribute("data-id");
-            (0,_task__WEBPACK_IMPORTED_MODULE_1__.toggleTask)(taskId);
-            (0,_ui__WEBPACK_IMPORTED_MODULE_0__.renderTasks)();
-        }
-    });
+document.addEventListener("DOMContentLoaded", function () {
+  (0,_ui__WEBPACK_IMPORTED_MODULE_0__.renderTasks)();
+  document.getElementById("task-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var taskInput = document.getElementById("task-input").value;
+    if (taskInput !== "") {
+      (0,_task__WEBPACK_IMPORTED_MODULE_1__.addTask)(taskInput);
+      (0,_ui__WEBPACK_IMPORTED_MODULE_0__.renderTasks)();
+      // Limpiar el valor el input
+      document.getElementById("task-input").value = "";
+    }
+  });
+  document.getElementById("task-list").addEventListener("click", function (e) {
+    if (e.target.classList.contains("delete")) {
+      var taskId = e.target.closest('li').getAttribute("data-id");
+      (0,_task__WEBPACK_IMPORTED_MODULE_1__.deleteTask)(taskId);
+      (0,_ui__WEBPACK_IMPORTED_MODULE_0__.renderTasks)();
+    }
+    if (e.target.classList.contains("toggle")) {
+      var _taskId = e.target.closest('li').getAttribute("data-id");
+      (0,_task__WEBPACK_IMPORTED_MODULE_1__.toggleTask)(_taskId);
+      (0,_ui__WEBPACK_IMPORTED_MODULE_0__.renderTasks)();
+    }
+  });
 });
 /******/ })()
 ;

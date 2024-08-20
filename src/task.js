@@ -11,7 +11,7 @@ export const addTask = (task) => {
         text: task,
         completed: false,
     };
-    tasks.push(newTask);
+    task.push(newTask);
     localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
