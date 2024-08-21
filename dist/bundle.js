@@ -30,7 +30,7 @@ var addTask = function addTask(task) {
     text: task,
     completed: false
   };
-  task.push(newTask);
+  tasks.push(newTask);
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
@@ -82,7 +82,7 @@ var renderTasks = function renderTasks() {
     if (tasks.completed === true) {
       li.classList.add("completed");
     }
-    li.innerHTML = "\n        ".concat(tasks.text, "\n        <div class=\"buttons\">\n        <button class=\"delete\"> Eliminar </button>\n        <button class=\"toggle\"> ").concat(tasks.completed === false ? "Completar" : "Deshacer", " </button>\n        <div>\n        ");
+    li.innerHTML = "\n        ".concat(tasks.text, "\n        <div class=\"buttons\">\n        <button class=\"delete\"> Delete </button>\n        <button class=\"toggle\"> ").concat(tasks.completed === false ? "Complete" : "Undo", " </button>\n        <div>\n        ");
     taskList.appendChild(li);
   });
 };

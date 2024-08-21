@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=New+Amsterdam&display=swap');
+
 body {
-    font-family: 'Popins', sans-serif;
-    background-color: #fdfafd;
-    margin: 0;
+    font-family: "Cinzel", serif;
+    background-color: #ebe0e0;
+    background:linear-gradient(#50434f, #b6a6b5, #009091, #d41f8c);
     padding: 0;
     display: flex;
     justify-content: center;
@@ -9,9 +12,18 @@ body {
     height: 100vh;
 }
 
+h1 {
+    font-family: "New Amsterdam", sans-serif;
+    color: #3d3d3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 
 #app {
-    background-color: rgb(129, 84, 112);
+    background-color: #ffcdb2;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -23,6 +35,7 @@ form {
 }
 
 input {
+    font-family: "Cinzel", serif;
     width: 75%;
     padding: 8px;
     margin-right: 10px;
@@ -31,6 +44,7 @@ input {
 }
 
 button {
+    font-family: "Cinzel", serif;
     padding: 5px 8 px;
     background-color: #c9d2dd;
     color: rgb(10, 10, 10);
@@ -57,5 +71,5 @@ li {
 
 li.completed {
     text-decoration: line-through;
-    color: #888
+    color: #070607;
 }
